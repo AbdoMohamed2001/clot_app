@@ -15,7 +15,6 @@ class SplashView extends StatelessWidget {
         if (state is SplashUnAuthorized) {
           Navigator.pushReplacementNamed(context, '/login');
         }
-        // TODO: implement listener
       },
       child: Scaffold(
         backgroundColor: AppColors.primary,
