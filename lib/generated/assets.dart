@@ -14,9 +14,12 @@ class Assets {
   static const String imagesProfile = 'assets/images/profile.png';
   static const String vectorsAppLogo = 'assets/vectors/app_logo.svg';
   static const String vectorsAppLogo2 = 'assets/vectors/app_logo_2.png';
+  static const String vectorsApple = 'assets/vectors/Apple.svg';
   static const String vectorsBag = 'assets/vectors/bag.svg';
   static const String vectorsCartBag = 'assets/vectors/cart_bag.svg';
   static const String vectorsEmailSending = 'assets/vectors/email_sending.svg';
+  static const String vectorsFacebook = 'assets/vectors/Facebook.svg';
+  static const String vectorsGoogle = 'assets/vectors/Google.svg';
   static const String vectorsLogo = 'assets/vectors/logo.svg';
   static const String vectorsNotFound = 'assets/vectors/not_found.svg';
   static const String vectorsSearch = 'assets/vectors/search.svg';
