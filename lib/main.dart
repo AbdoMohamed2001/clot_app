@@ -2,10 +2,13 @@ import 'package:clot_app/core/routes/material_routes.dart';
 import 'package:clot_app/core/theme/app_theme.dart';
 import 'package:clot_app/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:clot_app/features/splash/presentation/views/splash_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
