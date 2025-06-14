@@ -11,6 +11,7 @@ class Assets {
   static const String fontsCircularStdRegular =
       'assets/fonts/CircularStd-Regular.ttf';
   static const String imagesOrderPlaced = 'assets/images/order_placed.png';
+  static const String imagesProduct = 'assets/images/product.png';
   static const String imagesProfile = 'assets/images/profile.png';
   static const String vectorsAppLogo = 'assets/vectors/app_logo.svg';
   static const String vectorsAppLogo2 = 'assets/vectors/app_logo_2.png';
