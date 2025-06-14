@@ -1,6 +1,1 @@
-{
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  }
-}
+{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"flutter":{"platforms":{"android":{"default":{"projectId":"clot-app-4226a","appId":"1:142185378782:android:759c56abda5febd6cc234f","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"clot-app-4226a","configurations":{"android":"1:142185378782:android:759c56abda5febd6cc234f","ios":"1:142185378782:ios:ea6ca35dc2ab0174cc234f","macos":"1:142185378782:ios:ea6ca35dc2ab0174cc234f","web":"1:142185378782:web:4dbd351192569b95cc234f","windows":"1:142185378782:web:4a1d42c9b39b432bcc234f"}}}}}}

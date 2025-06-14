@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "142185378782",
+    "firebase_url": "https://clot-app-4226a-default-rtdb.firebaseio.com",
+    "project_id": "clot-app-4226a",
+    "storage_bucket": "clot-app-4226a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142185378782:android:759c56abda5febd6cc234f",
+        "android_client_info": {
+          "package_name": "com.example.clot_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3KOf5gwNq96k8s1oyK_C3I6Y1sritetw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

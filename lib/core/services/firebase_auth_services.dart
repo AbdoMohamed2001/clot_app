@@ -21,13 +21,15 @@ class FirebaseAuthService {
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        throw CustomExceptions(message: 'كلمة السر ضعيفة جدا');
+        throw CustomExceptions(message: 'Password provided is too weak');
       } else if (e.code == 'email-already-in-use') {
-        throw CustomExceptions(message: 'هذا البريد الإلكتروني مستخدم من قبل ');
+        throw CustomExceptions(message: 'Email already in use');
       }
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     } catch (e) {
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     }
   }
 
@@ -40,12 +42,12 @@ class FirebaseAuthService {
     } on FirebaseAuthException catch (e) {
       log('Error in Firebase Auth LoginUser : ${e.toString()}');
       if (e.code == 'user-not-found') {
-        throw CustomExceptions(message: 'هذا البريد الإلكتروني غير موجود');
+        throw CustomExceptions(message: 'User not found for that email');
       } else if (e.code == 'wrong-password') {
         throw CustomExceptions(
-            message: 'البريد الإلكترونى او كلمة السر غير صحيح');
+            message: 'Wrong password / email provided for that user');
       } else if (e.code == 'invalid-email') {
-        throw CustomExceptions(message: 'صيغة البريد الإلكتروني غير صحيحة');
+        throw CustomExceptions(message: 'Invalid email address');
       } else if (e.code == 'network-request-failed') {
         throw CustomExceptions(message: 'تحقق من اتصالك بالإنترنت');
       } else if (e.code == 'invalid-credential') {
@@ -53,10 +55,12 @@ class FirebaseAuthService {
             message: 'البريد الإلكترونى او كلمة السر غير صحيحة.');
       }
       log('Error in Firebase Auth LoginUser : ${e.toString()}');
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     } catch (e) {
       log('Error in Firebase Auth LoginUser : ${e.toString()}');
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     }
   }
 
@@ -78,10 +82,12 @@ class FirebaseAuthService {
         throw CustomExceptions(message: 'تحقق من اتصالك بالانترنت');
       }
       log('Firebase Auth Google SignIn Error: ${e.toString()}');
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     } catch (e) {
       log('Error in Firebase Auth LoginUser : ${e.toString()}');
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     }
   }
 
@@ -97,10 +103,12 @@ class FirebaseAuthService {
           .user!;
     } on FirebaseAuthException catch (e) {
       log('Firebase Auth Facebook SignIn Error: ${e.toString()}');
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     } catch (e) {
       log('Firebase Auth Facebook SignIn Error: ${e.toString()}');
-      throw CustomExceptions(message: 'هناك خطأ برجاء المحاولة في وقت لاحق');
+      throw CustomExceptions(
+          message: 'An error occurred, please try again later');
     }
   }
 

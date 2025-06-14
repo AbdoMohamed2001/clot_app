@@ -1,15 +1,23 @@
 import 'package:clot_app/core/routes/material_routes.dart';
+import 'package:clot_app/core/services/get_it_services_locator.dart';
 import 'package:clot_app/core/theme/app_theme.dart';
+import 'package:clot_app/features/auth/domain/use-cases/register_use_case.dart';
+import 'package:clot_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:clot_app/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:clot_app/features/splash/presentation/views/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
+  setupGitIt();
 }
 
 class MyApp extends StatelessWidget {
@@ -18,8 +26,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SplashCubit()..appStarted(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SplashCubit()..appStarted(),
+        ),
+        BlocProvider(
+          create: (context) => AuthCubit(getIt<RegisterUseCase>()),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: AppTheme.appTheme,

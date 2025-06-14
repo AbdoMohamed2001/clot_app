@@ -1,5 +1,6 @@
 import 'package:clot_app/core/utils/widgets/custom_button.dart';
 import 'package:clot_app/core/utils/widgets/custom_text_field.dart';
+import 'package:clot_app/features/auth/data/models/user_create_req_model.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/utils/text_styles.dart';
 import 'row_text.dart';
@@ -13,14 +14,14 @@ class RegisterViewBody extends StatefulWidget {
 
 class _RegisterViewBodyState extends State<RegisterViewBody> {
   late final GlobalKey<FormState> formKey;
-  late AutovalidateMode autoValidateMode;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   late final TextEditingController firstName, lastName, email, password;
+
   @override
   void initState() {
     super.initState();
     // TODO: implement initState
     formKey = GlobalKey<FormState>();
-    autoValidateMode = AutovalidateMode.always;
     firstName = TextEditingController();
     lastName = TextEditingController();
     email = TextEditingController();
@@ -90,17 +91,20 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               text: 'Continue',
               onTap: () {
                 if (formKey.currentState!.validate()) {
-                  autoValidateMode = AutovalidateMode.always;
-                  // No need to call formKey.currentState!.save();
-                  final first = firstName.text;
-                  final last = lastName.text;
-                  final mail = email.text;
-                  final pass = password.text;
-                  Navigator.pushNamed(context, '/user-prefs');
+                  UserCreateReqModel user = UserCreateReqModel(
+                    firstName: firstName.text,
+                    lastName: lastName.text,
+                    email: email.text,
+                    password: password.text,
+                  );
+                  // context.read<AuthCubit>().register(user: user);
+                  Navigator.pushNamed(context, '/user-prefs', arguments: user);
 
                   // Use these values now
-                }
-                autoValidateMode = AutovalidateMode.disabled;
+                } else {}
+                setState(() {
+                  autoValidateMode = AutovalidateMode.always;
+                });
               },
             ),
             SizedBox(height: 40),
@@ -108,7 +112,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               text: 'Forgot Password ? ',
               tappedText: 'Reset',
               onTap: () {
-                Navigator.pushNamed(context, '/register');
+                Navigator.pushNamed(context, '/reset');
               },
             ),
           ],
