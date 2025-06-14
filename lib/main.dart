@@ -1,6 +1,7 @@
 import 'package:clot_app/core/routes/material_routes.dart';
 import 'package:clot_app/core/services/get_it_services_locator.dart';
 import 'package:clot_app/core/theme/app_theme.dart';
+import 'package:clot_app/features/auth/domain/use-cases/login_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/register_use_case.dart';
 import 'package:clot_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:clot_app/features/splash/presentation/cubit/splash_cubit.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
           create: (context) => SplashCubit()..appStarted(),
         ),
         BlocProvider(
-          create: (context) => AuthCubit(getIt<RegisterUseCase>()),
+          create: (context) =>
+              AuthCubit(getIt<RegisterUseCase>(), getIt<LoginUseCase>()),
         ),
       ],
       child: MaterialApp(

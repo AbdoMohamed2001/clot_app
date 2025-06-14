@@ -56,26 +56,17 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             CustomTextField(
               hintText: 'Firstname',
               controller: firstName,
-              // onSaved: (value) {
-              //   firstName.text = value.toString();
-              // },
             ),
             SizedBox(height: 16),
             CustomTextField(
               hintText: 'Lastname',
               controller: lastName,
-              // onSaved: (value) {
-              //   lastName.text = value.toString();
-              // },
             ),
             SizedBox(height: 16),
             CustomTextField(
               hintText: 'Email Address',
               controller: email,
               keyboardType: TextInputType.emailAddress,
-              // onSaved: (value) {
-              //   email.text = value.toString();
-              // },
             ),
             SizedBox(height: 16),
             CustomTextField(
@@ -85,6 +76,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               onSaved: (value) {
                 password.text = value.toString();
               },
+              isObscure: true,
             ),
             SizedBox(height: 40),
             CustomButton(
@@ -97,7 +89,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     email: email.text,
                     password: password.text,
                   );
-                  // context.read<AuthCubit>().register(user: user);
                   Navigator.pushNamed(context, '/user-prefs', arguments: user);
 
                   // Use these values now

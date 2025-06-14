@@ -1,4 +1,5 @@
 import 'package:clot_app/features/auth/data/models/user_create_req_model.dart';
+import 'package:clot_app/features/auth/data/models/user_login_req_model.dart';
 import 'package:clot_app/features/auth/presentation/views/login_view.dart';
 import 'package:clot_app/features/auth/presentation/views/password_view.dart';
 import 'package:clot_app/features/auth/presentation/views/register_view.dart';
@@ -19,8 +20,11 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
         builder: (_) => LoginView(),
       );
     case '/password':
+      final UserLoginReqModel user = settings.arguments as UserLoginReqModel;
       return MaterialPageRoute(
-        builder: (_) => PasswordView(),
+        builder: (_) => PasswordView(
+          user: user,
+        ),
       );
     case '/register':
       return MaterialPageRoute(

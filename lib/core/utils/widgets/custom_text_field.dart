@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -17,23 +17,58 @@ class CustomTextField extends StatelessWidget {
   final bool isObscure;
   final AutovalidateMode? autoValidateMode;
   final void Function(String?)? onSaved;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool isHidden = true;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: isObscure,
-      // autovalidateMode: autoValidateMode,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      obscureText: isHidden,
       validator: (value) {
+        if (widget.keyboardType == TextInputType.emailAddress) {
+          if (value == null || value.isEmpty) {
+            return 'This field is required';
+          }
+          if (!value.contains('@')) {
+            return 'Enter a valid email';
+          }
+        } else if (widget.keyboardType == TextInputType.visiblePassword) {
+          if (value == null || value.isEmpty) {
+            return 'This field is required';
+          }
+          if (value.length < 6) {
+            return 'Min 6 characters';
+          }
+        }
         if (value == null || value.isEmpty) {
           return 'This field is required';
         }
         return null;
       },
-      onSaved: onSaved,
+      onSaved: widget.onSaved,
       obscuringCharacter: '●',
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.hintText,
+        suffixIcon: widget.isObscure
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    isHidden = !isHidden;
+                  });
+                },
+                icon: Icon(
+                  isHidden
+                      ? Icons.visibility_rounded
+                      : Icons.visibility_off_rounded,
+                  color: Colors.grey,
+                ))
+            : null,
       ),
     );
   }

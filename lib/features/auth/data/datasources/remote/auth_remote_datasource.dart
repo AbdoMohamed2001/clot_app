@@ -11,7 +11,9 @@ import '../../models/user_create_req_model.dart';
 import '../../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
+  Future<UserModel> login(String email, String password);
   Future<Either<Failure, UserModel>> register(UserCreateReqModel user);
+  Future<UserModel> getUserData({required String docId});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -20,16 +22,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   AuthRemoteDataSourceImpl(this.firebaseAuthService, this.fireStoreServices);
 
-  // Future<UserModel> signIn(String email, String password) async {
-  //   final result = await firebaseAuthService.signInWithEmailAndPassword(
-  //     email: email,
-  //     password: password,
-  //   );
-  //
-  //   final user = result.user!;
-  //   final snapshot = await firestore.collection('users').doc(user.uid).get();
-  //   return UserModel.fromJson(snapshot.data()!..['uid'] = user.uid);
-  // }
+  @override
+  Future<UserModel> login(String email, String password) async {
+    var user =
+        await firebaseAuthService.loginUser(email: email, password: password);
+    UserModel userModel = await getUserData(docId: user.uid);
+    return userModel;
+  }
 
   @override
   Future<Either<Failure, UserModel>> register(UserCreateReqModel user) async {
@@ -70,17 +69,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
-  // Future<void> signUp(UserModel user, String password) async {
-  //   final result = await auth.createUserWithEmailAndPassword(
-  //     email: user.email,
-  //     password: password,
-  //   );
-  //
-  //   final newUser = result.user!;
-  //   await firestore.collection('users').doc(newUser.uid).set(user.toJson());
-  // }
-  //
-  // Future<void> signOut() async {
-  //   await firebaseAuthService.signOut();
-  // }
+  @override
+  Future<UserModel> getUserData({required String docId}) async {
+    var data = await fireStoreServices.getData(path: 'users', recordId: docId);
+    return UserModel.fromJson(data);
+  }
 }
