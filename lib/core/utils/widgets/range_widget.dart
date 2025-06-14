@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../text_styles.dart';
 
 class AgeRangeDropdown extends StatefulWidget {
-  const AgeRangeDropdown({super.key});
+  const AgeRangeDropdown({super.key, required this.onChanged});
+  final void Function(String) onChanged;
 
   @override
   _AgeRangeDropdownState createState() => _AgeRangeDropdownState();
@@ -48,6 +49,9 @@ class _AgeRangeDropdownState extends State<AgeRangeDropdown> {
               isExpanded: true,
               style: TextStyle(color: Colors.white),
               onChanged: (value) {
+                value == null
+                    ? value = 'not-specified'
+                    : widget.onChanged(value); // Send value to parent
                 setState(() {
                   selectedRange = value;
                 });

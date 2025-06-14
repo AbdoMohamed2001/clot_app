@@ -29,7 +29,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyboardType,
-      obscureText: isHidden,
+      obscureText: widget.isObscure ? isHidden : false,
       validator: (value) {
         if (widget.keyboardType == TextInputType.emailAddress) {
           if (value == null || value.isEmpty) {

@@ -13,11 +13,17 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/utils/text_styles.dart';
 import '../../../../core/utils/widgets/small_button.dart';
 
-class UserPrefsViewBody extends StatelessWidget {
+class UserPrefsViewBody extends StatefulWidget {
   const UserPrefsViewBody({super.key, required this.user});
 
   final UserCreateReqModel user;
 
+  @override
+  State<UserPrefsViewBody> createState() => _UserPrefsViewBodyState();
+}
+
+class _UserPrefsViewBodyState extends State<UserPrefsViewBody> {
+  bool isMan = true;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -27,7 +33,7 @@ class UserPrefsViewBody extends StatelessWidget {
         } else if (state is AuthSuccess) {
           showSnackBar(context, 'Register Successfully');
           Navigator.pushReplacementNamed(context, '/home');
-          log(user.toString());
+          log(widget.user.toString());
         }
       },
       builder: (context, state) {
@@ -51,20 +57,45 @@ class UserPrefsViewBody extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SmallButton(text: 'Men'),
                     SmallButton(
-                        text: 'Women', color: AppColors.secondBackground),
+                      text: 'Men',
+                      color: isMan
+                          ? AppColors.primary
+                          : AppColors.secondBackground,
+                      onTap: () {
+                        setState(() {
+                          isMan = !isMan;
+                        });
+                        widget.user.gender = 'Male';
+                      },
+                    ),
+                    SmallButton(
+                      text: 'Women',
+                      color: !isMan
+                          ? AppColors.primary
+                          : AppColors.secondBackground,
+                      onTap: () {
+                        setState(() {
+                          isMan = !isMan;
+                        });
+                        widget.user.gender = 'Female';
+                      },
+                    ),
                   ],
                 ),
                 SizedBox(height: 56),
-                AgeRangeDropdown(),
+                AgeRangeDropdown(
+                  onChanged: (value) {
+                    widget.user.age = value;
+                  },
+                ),
                 Spacer(),
                 CustomButton(
                   text: 'Finish',
                   onTap: () {
-                    user.gender = 'Male';
-                    user.age = '18-24';
-                    context.read<AuthCubit>().register(user: user);
+                    widget.user.gender = isMan ? 'Male' : 'Female';
+                    widget.user.age = widget.user.age ?? 'not- specified';
+                    context.read<AuthCubit>().register(user: widget.user);
                   },
                 ),
                 SizedBox(height: 14),

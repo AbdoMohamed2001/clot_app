@@ -44,4 +44,9 @@ class AuthRepoImpl implements AuthRepo {
       },
     );
   }
+
+  @override
+  Either<Failure, bool> isLogged() {
+    return authRemoteDataSource.isLogged();
+  }
 }

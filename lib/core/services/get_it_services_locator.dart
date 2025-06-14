@@ -2,6 +2,7 @@ import 'package:clot_app/features/auth/data/datasources/local/auth_local_datasou
 import 'package:clot_app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:clot_app/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:clot_app/features/auth/domain/repos/auth_repo.dart';
+import 'package:clot_app/features/auth/domain/use-cases/is_logged_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/login_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/register_use_case.dart';
 import 'package:get_it/get_it.dart';
@@ -33,4 +34,5 @@ setupGitIt() {
   //UseCases
   getIt.registerSingleton<RegisterUseCase>(RegisterUseCase(getIt<AuthRepo>()));
   getIt.registerSingleton<LoginUseCase>(LoginUseCase(getIt<AuthRepo>()));
+  getIt.registerSingleton<IsLoggedUseCase>(IsLoggedUseCase(getIt<AuthRepo>()));
 }

@@ -1,6 +1,7 @@
 import 'package:clot_app/core/routes/material_routes.dart';
 import 'package:clot_app/core/services/get_it_services_locator.dart';
 import 'package:clot_app/core/theme/app_theme.dart';
+import 'package:clot_app/features/auth/domain/use-cases/is_logged_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/login_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/register_use_case.dart';
 import 'package:clot_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SplashCubit()..appStarted(),
+          create: (context) =>
+              SplashCubit(getIt<IsLoggedUseCase>())..appStarted(),
         ),
         BlocProvider(
           create: (context) =>

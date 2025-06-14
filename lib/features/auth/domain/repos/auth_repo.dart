@@ -6,4 +6,5 @@ import 'package:dartz/dartz.dart';
 abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> login(String email, String password);
   Future<Either<Failure, void>> register(UserCreateReqModel user);
+  Either<Failure, bool> isLogged();
 }

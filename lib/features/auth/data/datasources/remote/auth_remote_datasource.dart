@@ -14,6 +14,7 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> login(String email, String password);
   Future<Either<Failure, UserModel>> register(UserCreateReqModel user);
   Future<UserModel> getUserData({required String docId});
+  Either<Failure, bool> isLogged();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -73,5 +74,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> getUserData({required String docId}) async {
     var data = await fireStoreServices.getData(path: 'users', recordId: docId);
     return UserModel.fromJson(data);
+  }
+
+  @override
+  Either<Failure, bool> isLogged() {
+    try {
+      if (firebaseAuthService.isLoggedIn()) {
+        return right(true);
+      }
+      return right(false);
+    } on Exception catch (e) {
+      return left(ServerFailure(message: e.toString()));
+    }
   }
 }
