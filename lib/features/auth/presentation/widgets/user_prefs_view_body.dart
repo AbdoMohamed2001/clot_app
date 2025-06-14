@@ -62,8 +62,8 @@ class UserPrefsViewBody extends StatelessWidget {
                 CustomButton(
                   text: 'Finish',
                   onTap: () {
-                    user.gender = 0;
-                    user.age = '';
+                    user.gender = 'Male';
+                    user.age = '18-24';
                     context.read<AuthCubit>().register(user: user);
                   },
                 ),

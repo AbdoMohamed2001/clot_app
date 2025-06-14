@@ -1,7 +1,7 @@
 class UserCreateReqModel {
   final String firstName, lastName, email, password;
   String? age;
-  int? gender;
+  String? gender;
 
   UserCreateReqModel({
     required this.firstName,
@@ -11,4 +11,15 @@ class UserCreateReqModel {
     this.gender,
     this.age,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      "first_name": firstName,
+      "last_name": lastName,
+      "email": email,
+      "password": password,
+      "age": age,
+      "gender": gender,
+    };
+  }
 }

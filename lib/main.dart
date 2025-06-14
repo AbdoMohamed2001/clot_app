@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'core/services/shared_prefs_services.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -16,8 +17,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  await Prefs.init();
   setupGitIt();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
