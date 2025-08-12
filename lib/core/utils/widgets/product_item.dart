@@ -5,55 +5,47 @@ import '../../../generated/assets.dart';
 import '../text_styles.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
-
+  const ProductItem({super.key, this.height, this.width});
+  final double? height;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 281,
-      width: 159,
+      width: width ?? 165,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
+        color: AppColors.secondBackground,
       ),
+      clipBehavior: Clip.antiAlias,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-            child: Image.asset(
-              Assets.imagesProduct,
-              height: 220,
-              width: double.infinity,
+          //IMAGE
+          Image.asset(
+            Assets.imagesProduct,
+            width: double.infinity,
+            height: 220,
+            fit: BoxFit.cover,
+          ),
+          //TEXT
+          SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Text(
+              "Men's Harrington Jacket",
+              style: TextStyles.book12.copyWith(height: 160 / 100),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(8),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.secondBackground,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Men's Harrington Jacket",
-                    style: TextStyles.book12,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "\$148.00",
-                    style: TextStyles.bold12,
-                  ),
-                ],
-              ),
+          SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Text(
+              "\$148.00",
+              style: TextStyles.bold12,
             ),
           ),
+          SizedBox(height: 16),
         ],
       ),
     );

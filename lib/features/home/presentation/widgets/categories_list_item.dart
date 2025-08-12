@@ -1,18 +1,18 @@
+import 'package:clot_app/features/categories/domain/entities/category_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/text_styles.dart';
-import '../../../../generated/assets.dart';
 
-Widget categoriesListItem() {
+Widget categoriesListItem(CategoryEntity category) {
   return Column(
     children: [
       CircleAvatar(
-        backgroundImage: AssetImage(Assets.imagesProfile),
+        backgroundImage: NetworkImage(category.imageUrl),
         radius: 28,
       ),
       SizedBox(height: 5),
       Text(
-        'Shorts',
+        category.name,
         style: TextStyles.book12,
       )
     ],

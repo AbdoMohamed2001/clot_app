@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/text_styles.dart';
 
-Widget categoriesSection() {
+Widget categoriesSection(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Text(
+      const Text(
         'Categories',
         style: TextStyles.bold16,
       ),
-      Text(
-        'See All',
-        style: TextStyles.book16,
+      InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, '/categories');
+        },
+        child: Text(
+          'See All',
+          style: TextStyles.book16,
+        ),
       ),
     ],
   );

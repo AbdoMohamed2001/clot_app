@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/text_styles.dart';
 
-Widget newInSection() {
+Widget newInSection(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -11,9 +11,14 @@ Widget newInSection() {
         'New In',
         style: TextStyles.bold16.copyWith(color: AppColors.primary),
       ),
-      Text(
-        'See All',
-        style: TextStyles.book16,
+      InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, '/newIn');
+        },
+        child: Text(
+          'See All',
+          style: TextStyles.book16,
+        ),
       ),
     ],
   );

@@ -8,6 +8,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final bool hideBack;
   final double? height;
+
   const BasicAppbar(
       {this.title,
       this.hideBack = false,
@@ -19,6 +20,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leadingWidth: 85,
       backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
       centerTitle: true,
@@ -29,17 +31,21 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [action ?? Container()],
       leading: hideBack
           ? null
-          : IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Container(
-                height: 50,
-                width: 50,
-                decoration: const BoxDecoration(
-                    color: AppColors.secondBackground, shape: BoxShape.circle),
-                child: const Icon(Icons.arrow_back_ios_new,
-                    size: 15, color: Colors.white),
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: CircleAvatar(
+                  backgroundColor: AppColors.secondBackground,
+                  child: const Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 15,
+                    color: Colors.white,
+                    weight: 1.5,
+                  ),
+                ),
               ),
             ),
     );

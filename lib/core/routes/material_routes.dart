@@ -5,7 +5,10 @@ import 'package:clot_app/features/auth/presentation/views/password_view.dart';
 import 'package:clot_app/features/auth/presentation/views/register_view.dart';
 import 'package:clot_app/features/auth/presentation/views/reset_password_view.dart';
 import 'package:clot_app/features/auth/presentation/views/user_prefs_view.dart';
+import 'package:clot_app/features/home/presentation/views/categories_view.dart';
 import 'package:clot_app/features/home/presentation/views/home_view.dart';
+import 'package:clot_app/features/home/presentation/views/new_in_view.dart';
+import 'package:clot_app/features/home/presentation/views/top_selling_view.dart';
 import 'package:clot_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -45,10 +48,23 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
           user: user,
         ),
       );
-
+    //------------------------------------------------------------
+    //HOME
     case '/home':
       return MaterialPageRoute(
         builder: (_) => HomeView(),
+      );
+    case '/categories':
+      return MaterialPageRoute(
+        builder: (_) => CategoriesView(),
+      );
+    case '/topSelling':
+      return MaterialPageRoute(
+        builder: (_) => TopSellingView(),
+      );
+    case '/newIn':
+      return MaterialPageRoute(
+        builder: (_) => NewInView(),
       );
     default:
       return MaterialPageRoute(

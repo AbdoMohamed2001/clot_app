@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/text_styles.dart';
 
-Widget bestSellerSection() {
+Widget bestSellerSection(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -10,9 +10,14 @@ Widget bestSellerSection() {
         'Top Selling',
         style: TextStyles.bold16,
       ),
-      Text(
-        'See All',
-        style: TextStyles.book16,
+      InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, '/topSelling');
+        },
+        child: Text(
+          'See All',
+          style: TextStyles.book16,
+        ),
       ),
     ],
   );
