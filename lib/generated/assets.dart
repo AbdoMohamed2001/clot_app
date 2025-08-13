@@ -16,12 +16,21 @@ class Assets {
   static const String vectorsAppLogo = 'assets/vectors/app_logo.svg';
   static const String vectorsAppLogo2 = 'assets/vectors/app_logo_2.png';
   static const String vectorsApple = 'assets/vectors/Apple.svg';
+  static const String vectorsArrowdown2 = 'assets/vectors/arrowdown2.svg';
+  static const String vectorsArrowleft2 = 'assets/vectors/arrowleft2.svg';
+  static const String vectorsArrowright2 = 'assets/vectors/arrowright2.svg';
   static const String vectorsBag = 'assets/vectors/bag.svg';
   static const String vectorsCartBag = 'assets/vectors/cart_bag.svg';
   static const String vectorsEmailSending = 'assets/vectors/email_sending.svg';
   static const String vectorsFacebook = 'assets/vectors/Facebook.svg';
   static const String vectorsGoogle = 'assets/vectors/Google.svg';
+  static const String vectorsHeart = 'assets/vectors/heart.svg';
+  static const String vectorsHome2 = 'assets/vectors/home2.svg';
   static const String vectorsLogo = 'assets/vectors/logo.svg';
   static const String vectorsNotFound = 'assets/vectors/not_found.svg';
+  static const String vectorsNotificationbing =
+      'assets/vectors/notificationbing.svg';
+  static const String vectorsProfile = 'assets/vectors/profile.svg';
+  static const String vectorsReceipt1 = 'assets/vectors/receipt1.svg';
   static const String vectorsSearch = 'assets/vectors/search.svg';
 }

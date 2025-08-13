@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../generated/assets.dart';
 import '../../theme/app_colors.dart';
 
 class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -39,12 +41,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
                 },
                 child: CircleAvatar(
                   backgroundColor: AppColors.secondBackground,
-                  child: const Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 15,
-                    color: Colors.white,
-                    weight: 1.5,
-                  ),
+                  child: SvgPicture.asset(Assets.vectorsArrowleft2),
                 ),
               ),
             ),

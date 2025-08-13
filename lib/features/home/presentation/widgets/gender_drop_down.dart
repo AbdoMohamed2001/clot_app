@@ -1,6 +1,9 @@
+import 'package:clot_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/text_styles.dart';
+import '../../../../generated/assets.dart';
 
 class GenderDropdown extends StatefulWidget {
   final void Function(String)? onChanged;
@@ -18,18 +21,18 @@ class _GenderDropdownState extends State<GenderDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1), // Semi-transparent dark
-        borderRadius: BorderRadius.circular(100), // Pill shape
+        color: AppColors.secondBackground,
+        borderRadius: BorderRadius.circular(30),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: selectedValue,
           dropdownColor: const Color(0xFF2C2731), // Match dropdown background
-          icon: const Icon(Icons.keyboard_arrow_down_rounded,
-              color: Colors.white),
+          icon: SvgPicture.asset(Assets.vectorsArrowdown2),
           style: TextStyles.bold12,
-          padding: EdgeInsets.symmetric(horizontal: 4),
+          padding: EdgeInsets.only(right: 14, left: 10),
           alignment: Alignment.bottomCenter,
           iconSize: 16,
           onChanged: (value) {

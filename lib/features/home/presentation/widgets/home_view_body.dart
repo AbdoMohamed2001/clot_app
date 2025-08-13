@@ -34,7 +34,8 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
           //CATEGORIES LIST VIEW
-          categoriesListView(context),
+          const CategoriesListView(),
+          // categoriesListView(context),
           const SizedBox(height: 24),
           //BEST SELLER SECTION
           Padding(
