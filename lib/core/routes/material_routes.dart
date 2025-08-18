@@ -9,6 +9,7 @@ import 'package:clot_app/features/home/presentation/views/categories_view.dart';
 import 'package:clot_app/features/home/presentation/views/home_view.dart';
 import 'package:clot_app/features/home/presentation/views/new_in_view.dart';
 import 'package:clot_app/features/home/presentation/views/top_selling_view.dart';
+import 'package:clot_app/features/nav_bar/presentation/views/main_view.dart';
 import 'package:clot_app/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,10 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       );
     //------------------------------------------------------------
     //HOME
+    case '/main':
+      return MaterialPageRoute(
+        builder: (_) => MainView(),
+      );
     case '/home':
       return MaterialPageRoute(
         builder: (_) => HomeView(),

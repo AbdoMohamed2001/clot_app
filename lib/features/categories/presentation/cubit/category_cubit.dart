@@ -10,6 +10,7 @@ class CategoryCubit extends Cubit<CategoryState> {
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
 
   void getAllCategories() async {
+    emit(CategoryLoading());
     var result = await getAllCategoriesUseCase.call();
     result.fold(
       (fail) {

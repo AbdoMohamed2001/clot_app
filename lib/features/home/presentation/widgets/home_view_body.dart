@@ -35,7 +35,6 @@ class HomeViewBody extends StatelessWidget {
           ),
           //CATEGORIES LIST VIEW
           const CategoriesListView(),
-          // categoriesListView(context),
           const SizedBox(height: 24),
           //BEST SELLER SECTION
           Padding(
@@ -46,7 +45,7 @@ class HomeViewBody extends StatelessWidget {
           //BEST SELLER LIST VIEW
           Padding(
             padding: const EdgeInsets.only(left: 24.0),
-            child: const ProductsListView(),
+            child: const ProductsListView(isBestSelling: true),
           ),
           //NEW IN SECTION
           const SizedBox(height: 24),
@@ -58,7 +57,7 @@ class HomeViewBody extends StatelessWidget {
           //NEW IN LIST VIEW
           Padding(
             padding: const EdgeInsets.only(left: 24.0),
-            child: const ProductsListView(),
+            child: const ProductsListView(isNewIn: true),
           ),
           const SizedBox(height: 16),
         ],

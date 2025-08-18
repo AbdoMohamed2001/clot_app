@@ -28,40 +28,50 @@ class FireStoreServices extends DatabaseServices {
     Map<String, dynamic>? query,
     String? subPath,
     String? subRecordId,
+    dynamic whereFieldValue,
+    bool? isDescending = true,
   }) async {
+    //get data in document
     if (recordId != null && subPath == null) {
       var docData = await firestore.collection(path).doc(recordId).get();
       return docData.data() as Map<String, dynamic>;
     } else {
       List<Map<String, dynamic>> dataList;
+      //get data in sub collection
       if (subPath != null) {
         Query<Map<String, dynamic>> data =
-            firestore.collection(path).doc(subRecordId).collection(subPath);
+            firestore.collection(path).doc(recordId).collection(subPath);
         QuerySnapshot<Map<String, dynamic>> result = await data.get();
         dataList = result.docs.map((e) => e.data()).toList();
       } else {
+        //get data in collection
         Query<Map<String, dynamic>> data = firestore.collection(path);
+        //get data with query
         if (query != null) {
+          //ORDER BY QUERY
           if (query['orderBy'] != null) {
             var orderByField = query['orderBy'];
-            var descending = query['descending'] ?? false;
-            data = data.orderBy(orderByField, descending: descending);
+            log('this is order by fild ${query['orderBy']}');
+            data = data.orderBy(orderByField, descending: true);
           }
+          //LIMIT QUERY
           if (query['limit'] != null) {
             var limit = query['limit'];
             data = data.limit(limit);
           }
+          //START AFTER QUERY
           if (query['startAfter'] != null) {
             var startAfter = query['startAfter'];
             data = data.startAfter(startAfter);
           }
+          //END BEFORE QUERY
           if (query['endBefore'] != null) {
             var endBefore = query['endBefore'];
             data = data.endBefore(endBefore);
           }
-          if (query['where'] != null) {
-            var whereField = query['where'];
-            data = data.where(whereField, isEqualTo: true);
+          //WHERE QUERY
+          if (query['where'] != null && whereFieldValue != null) {
+            data = data.where(query['where'], isEqualTo: whereFieldValue);
           }
         }
         QuerySnapshot<Map<String, dynamic>> result = await data.get();
@@ -106,25 +116,6 @@ class FireStoreServices extends DatabaseServices {
     List<Map<String, dynamic>> dataList =
         snapshot.docs.map((doc) => doc.data()).toList();
     return dataList;
-  }
-
-//-------------------------------------------------------------
-  @override
-  Future<Either<Failure, void>> addReview({
-    required String path,
-    required String recordId,
-    required Map<String, dynamic> review,
-  }) async {
-    //get all doc fields
-    try {
-      await firestore.collection(path).doc(recordId).update({
-        'reviews': FieldValue.arrayUnion([review]),
-      });
-    } catch (e) {
-      log('error in adding review in firestore services $e');
-      return left(Failure(message: 'error in adding review'));
-    }
-    return right(null);
   }
 
 //------------------------------------------------------------

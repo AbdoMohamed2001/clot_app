@@ -1,6 +1,7 @@
 import 'package:clot_app/core/routes/material_routes.dart';
 import 'package:clot_app/core/services/get_it_services_locator.dart';
 import 'package:clot_app/core/theme/app_theme.dart';
+import 'package:clot_app/core/utils/simple_bloc_observer.dart';
 import 'package:clot_app/features/auth/domain/use-cases/is_logged_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/login_use_case.dart';
 import 'package:clot_app/features/auth/domain/use-cases/register_use_case.dart';
@@ -9,6 +10,7 @@ import 'package:clot_app/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:clot_app/features/splash/presentation/views/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/services/shared_prefs_services.dart';
@@ -16,12 +18,21 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Color(0xff1D182A), // your primary/dark color
+      systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarDividerColor: Colors.transparent,
+      statusBarColor: Color(0xff1D182A),
+    ),
+  );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Prefs.init();
   setupGitIt();
   runApp(const MyApp());
+  Bloc.observer = SimpleBlocObserver();
 }
 
 class MyApp extends StatelessWidget {

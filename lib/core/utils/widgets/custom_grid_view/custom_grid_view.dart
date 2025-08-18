@@ -1,4 +1,3 @@
-import 'package:clot_app/core/utils/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 
 class CustomGridView extends StatelessWidget {
@@ -14,7 +13,7 @@ class CustomGridView extends StatelessWidget {
         crossAxisSpacing: 20,
         childAspectRatio: 161 / 288,
       ),
-      itemBuilder: (_, i) => ProductItem(),
+      itemBuilder: (_, i) => Container(),
       itemCount: 10,
     );
   }

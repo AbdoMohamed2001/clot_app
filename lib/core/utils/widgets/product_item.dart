@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clot_app/core/theme/app_colors.dart';
+import 'package:clot_app/features/products/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../../generated/assets.dart';
 import '../text_styles.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key, this.height, this.width});
+  const ProductItem(
+      {super.key, this.height, this.width, required this.productEntity});
   final double? height;
   final double? width;
+  final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,10 +24,10 @@ class ProductItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //IMAGE
-          Image.asset(
-            Assets.imagesProduct,
-            width: double.infinity,
+          CachedNetworkImage(
+            imageUrl: productEntity.images[0],
             height: 220,
+            width: double.infinity,
             fit: BoxFit.cover,
           ),
           //TEXT
@@ -32,7 +35,7 @@ class ProductItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: Text(
-              "Men's Harrington Jacket",
+              productEntity.name['en'],
               style: TextStyles.book12.copyWith(height: 160 / 100),
               overflow: TextOverflow.ellipsis,
             ),
@@ -41,7 +44,7 @@ class ProductItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: Text(
-              "\$148.00",
+              "${productEntity.price} RM",
               style: TextStyles.bold12,
             ),
           ),

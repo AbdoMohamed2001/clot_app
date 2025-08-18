@@ -9,12 +9,6 @@ abstract class DatabaseServices {
     String? docId,
   });
 
-  Future<Either<Failure, void>> addReview({
-    required String path,
-    required String recordId,
-    required Map<String, dynamic> review,
-  });
-
   Future<Either<Failure, void>> addData({
     required String path,
     String? recordId,
@@ -36,6 +30,7 @@ abstract class DatabaseServices {
     Map<String, dynamic>? query,
     String? subPath,
     String? subRecordId,
+    dynamic whereFieldValue,
   });
 
   Future<void> updateData({
